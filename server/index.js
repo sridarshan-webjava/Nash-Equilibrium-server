@@ -79,14 +79,10 @@ io.on("connection", socket => {
     responses[resp].push(socket.id);
     noOfResponses++;
     if (noOfResponses === 2) {
-      console.log("Inside if");
       updateScores();
       noOfResponses = 0;
       io.emit("update-scores", players);
-      io.emit("next-round", currentRound++);
-    } else {
-      console.log("Inside else");
-      socket.emit("waiting", "Waiting for players");
+      io.emit("next-round", ++currentRound);
     }
   });
 });
