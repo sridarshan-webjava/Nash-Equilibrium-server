@@ -100,12 +100,12 @@ io.on("connection", socket => {
   socket.on("play-round", resp => {
     responses[resp].push(socket.id);
     noOfResponses++;
-    if (noOfResponses === 8) {
+    if (noOfResponses === 4) {
       updateScores();
       noOfResponses = 0;
       currentRound++;
 
-      if (currentRound === 3) {
+      if (currentRound === 8) {
         io.emit("update-scores", players);
         const winner = findWinner();
         io.emit("end-game", `${winner} is the winner !!`);
